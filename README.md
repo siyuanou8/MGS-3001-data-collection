@@ -41,29 +41,17 @@ The repository also includes two event-study datasets:
 ```text
 
 MGS-3001-data-collection/
-
 ├── README.md
-
 ├── data/
-
 │   ├── master_data.csv
-
 │   ├── event_level_data.csv
-
 │   ├── daily_event_data.csv
-
 │   ├── cn_stock_data.csv
-
 │   ├── us_stock_data.csv
-
 │   ├── csi300_benchmark.csv
-
 │   ├── sp500_benchmark.csv
-
 │   ├── cn_news_raw.csv
-
 │   └── en_news_raw.csv
-
 ├── code/
 
 │   └── data_collection_v3.ipynb
