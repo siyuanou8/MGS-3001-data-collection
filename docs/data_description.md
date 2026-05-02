@@ -60,3 +60,5 @@ The final dataset `master_data.csv` contains:
 - Chinese A-share batch collection through AKShare/TongHuaShun was unstable due to anti-scraping restrictions, so CSMAR CSV data were used instead.
 - News data collection required hidden API requests; some websites used signed request parameters.
 - The DeepSeek-R1 event date is close to the Chinese Spring Festival market closure, which may affect later event-window analysis.
+
+  One firm-event observation is missing because stock `688469` did not have enough pre-event trading observations before the GPT-4 event to estimate the market model. Therefore, the event-level dataset contains 119 firm-event observations instead of the planned 120.
