@@ -53,9 +53,6 @@ MGS-3001-data-collection/
 │   ├── cn_news_raw.csv
 │   └── en_news_raw.csv
 ├── code/
-
 │   └── data_collection_v3.ipynb
-
 └── docs/
-
     └── data_description.md
