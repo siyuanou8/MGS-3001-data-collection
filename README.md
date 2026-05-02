@@ -27,8 +27,8 @@ The dataset includes daily closing prices, stock returns, trading volume, turnov
 - Chinese market benchmark: CSI 300
 - U.S. market benchmark: S&P 500
 - News data: collected from Chinese and English financial news sources using web requests and hidden API responses
-- `data/event_level_data.csv`: firm-event level dataset containing CAR, PostCAR, TurnoverChange, and estimated beta.
-- `data/daily_event_data.csv`: daily event-window dataset containing abnormal returns and event-day indexes.
+- data/event_level_data.csv`: firm-event level dataset containing CAR, PostCAR, TurnoverChange, and estimated beta.
+- data/daily_event_data.csv`: daily event-window dataset containing abnormal returns and event-day indexes.
 
 ## Repository Structure
 
