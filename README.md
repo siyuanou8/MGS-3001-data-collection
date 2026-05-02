@@ -31,6 +31,3 @@ Each row represents one firm-date observation. The dataset includes 60 AI-relate
 
 ## Reproducibility
 Run `data_collection_v3.ipynb` to reproduce the cleaned datasets and final `master_data.csv`.
-
-## Reproducibility
-Run `data_collection_v3.ipynb` to reproduce the cleaned datasets and final `master_data.csv`.
