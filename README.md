@@ -1,4 +1,4 @@
-# MGS-3001-data-collection
+
 # MGS 3001 Data Collection Project
 
 ## Project Overview
