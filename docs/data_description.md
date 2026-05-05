@@ -1,64 +1,55 @@
 # Data Description
 
-The final dataset is `data/master_data.csv`. Each row represents one firm-date observation.
+## Project Title
 
-## Data Sources
+**When AI Speaks, Markets Listen**
 
-- **Chinese A-share stock data:** CSMAR database, downloaded as CSV files.
-- **U.S. stock data:** collected through Python-based financial data tools.
-- **Chinese market benchmark:** CSI 300 benchmark data.
-- **U.S. market benchmark:** S&P 500 benchmark data.
-- **News data:** collected from Chinese and English financial news sources using web requests and hidden API responses.
+## Research Question
 
-## Collection Method
+Do major LLM releases generate different stock market reactions across U.S. and Chinese AI-related semiconductor and software firms?
 
-This project uses both database CSV downloads and web-based data collection.
+## Final Datasets
 
-Chinese A-share stock data were originally attempted through AKShare/TongHuaShun. A single-stock test could return valid data, but batch collection for 30 Chinese stocks was unstable because repeated requests likely triggered anti-scraping restrictions. Therefore, the final Chinese stock data were downloaded from the CSMAR database as CSV files.
+This repository contains the final cleaned datasets used for the data collection and research readiness stage.
 
-News data were collected by using browser DevTools to inspect Network requests, identify hidden API endpoints, and parse JSON responses with Python `requests`.
+| Dataset | Rows | Columns | Description |
+|---|---:|---:|---|
+| `master_data.csv` | 76,814 | 15 | Final firm-date daily panel dataset |
+| `event_level_data.csv` | 239 | 20 | Firm-event level event-study dataset |
+| `daily_event_data.csv` | 36,089 | 20 | Daily event-window abnormal return dataset |
+| `sp500_benchmark.csv` | benchmark data | benchmark data | U.S. market benchmark data |
+| `csi300_benchmark.csv` | benchmark data | benchmark data | Chinese market benchmark data |
+| `cn_news_raw.csv` | news data | news data | Chinese AI-related news headlines |
+| `en_news_raw.csv` | news data | news data | English AI-related news headlines |
 
-## Time Period Covered
+The main dataset is `master_data.csv`. It contains daily stock observations for 80 AI-related listed firms across two markets and two industries:
 
-The stock dataset covers daily observations from **2022-06-01** to **2026-04-30**.
+- U.S. semiconductor firms: 20
+- U.S. software firms: 20
+- Chinese semiconductor firms: 20
+- Chinese software firms: 20
 
-## Dataset Size
+## Sample Expansion
 
-The final dataset `master_data.csv` contains:
+The sample was expanded from 60 firms to 80 firms to improve statistical power for later empirical analysis. Each market-industry group now contains 20 firms.
 
-- **51,239 rows**
-- **15 columns**
-- **60 listed firms**
-- **2 markets:** U.S. and China
-- **2 industries:** Semiconductor and Software
+The additional firms were selected based on three criteria:
 
-## Variable Dictionary
+1. **AI relevance**: firms must have clear exposure to AI-related semiconductor, software, cloud, enterprise software, cybersecurity, or AI application activities.
+2. **Market capitalization or industry representativeness**: larger or more representative firms were prioritized within each market-industry group.
+3. **Data availability**: firms needed sufficient daily trading data to construct the estimation window, event window, and post-event window.
 
-| Variable | Data Type | Description | Example |
-|---|---|---|---|
-| `date` | Date | Trading date | `2022-06-01` |
-| `ticker` | String | Stock ticker | `NVDA` |
-| `market` | String | Market indicator | `US` |
-| `industry` | String | Industry group | `Semi` |
-| `close` | Float | Daily closing price | `18.2867` |
-| `log_ret` | Float | Daily log return mainly for U.S. stocks | `0.0671` |
-| `volume` | Float | Daily trading volume | `544514000` |
-| `turnover` | Float | Daily turnover rate | `0.0224` |
-| `marketcap` | Float | Firm market capitalization | `4.823327e+12` |
-| `beta` | Float | Firm-level beta | `2.335` |
-| `ret_market` | Float | Daily market benchmark return | `0.0183` |
-| `ret` | Float | Daily return mainly for Chinese stocks | `0.0407` |
-| `China` | Integer | Dummy variable equal to 1 for Chinese firms | `0` |
-| `Software` | Integer | Dummy variable equal to 1 for software firms | `0` |
-| `stock_ret` | Float | Unified stock return variable used for later analysis | `0.0671` |
+## Event Coverage
 
-## Known Data Quality Issues
+The updated event-study design includes three major LLM release events:
 
-- Chinese and U.S. markets follow different trading calendars.
-- Return values are missing on the first trading day for each stock because returns require the previous closing price.
-- Some benchmark returns are missing on non-overlapping market holidays.
-- Chinese A-share batch collection through AKShare/TongHuaShun was unstable due to anti-scraping restrictions, so CSMAR CSV data were used instead.
-- News data collection required hidden API requests; some websites used signed request parameters.
-- The DeepSeek-R1 event date is close to the Chinese Spring Festival market closure, which may affect later event-window analysis.
+| Event | Event Date | Origin |
+|---|---:|---|
+| GPT-4 | 2023-03-15 | U.S. |
+| Gemini | 2023-12-06 | U.S. |
+| DeepSeek-R1 | 2025-01-27 | China |
 
-  One firm-event observation is missing because stock `688469` did not have enough pre-event trading observations before the GPT-4 event to estimate the market model. Therefore, the event-level dataset contains 119 firm-event observations instead of the planned 120.
+The planned event-level sample is:
+
+```text
+80 firms × 3 events = 240 firm-event observations
